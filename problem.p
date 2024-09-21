@@ -1,0 +1,1 @@
+fof(trivial,conjecture, $true).
