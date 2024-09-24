@@ -1,4 +1,5 @@
 Require Import Lia.
+Require Extraction.
 
 Lemma basic_arith : forall x y z,
     x * (y + z) = (x * y) + (x * z).
@@ -9,3 +10,5 @@ Lemma simpler_arith : forall x y,
     x + y = y + x.
 Proof. lia. Qed.
 Print simpler_arith.
+
+Extraction simpler_arith.

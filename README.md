@@ -1,11 +1,27 @@
-# My experimentation
+# The Question
+
+Given a proof step, probably provided by a student, is there a way to give it to
+some automated theorem prover and with some weighted counting of its steps,
+judge whether the student's step is at an appropriate level of granularity?
+
+## Sub-questions
+
+Is granularity context-dependent and is there a way to parameterize that in our
+system?
+
+At what level are the steps taken by the theorem prover and is there a specific
+theorem prover that is most appropriate for this job?
+
+With what data do we test this?
+
+# Finding the right tool
 
 Tools like $\Omega\text{mega}$, Dialog, and Tramp, which reconstruct proofs at the
 assertion level, seem not to exist anymore.
 
 ## First thought: Observe the output of tactics like `lia` in Coq
 
-This seems not to be feasible. Even for a really trivial proof like $\forall x
+This seems not to be feasible. Even for a really trivial proof like $\forall x,
 y, x + y = y + x$, the underlying proof script is
 
 <details>
@@ -45,3 +61,16 @@ Arguments simpler_arith (x y)%nat_scope
 ```
 
 </details>
+
+## Second thought: Using Vampire as a starting point, implement my own reconstruction at the assertion level? Or scrap that and implement CoRe calculus?
+
+## Alternate second thought: Learn about Isabelle/Isar and Sledgehammer?
+
+This seems promising because it uses HOL and you can specify a logic/theorem for
+it to use. [These](https://wwwbroy.in.tum.de/~berghofe/papers/CHIT_slides.pdf)
+slides talk about examining the underlying proof object/looking at extracted
+code. [These](https://isabelle.in.tum.de/~berghofe/papers/TYPES2003_slides.pdf)
+slides use some sort of code extraction for theorems but I can't figure out how
+it works. Would need to deep dive learn Isabelle and then code extraction.
+
+## Alternate' second thought: Metamath/Automath? I don't really know what these are.
