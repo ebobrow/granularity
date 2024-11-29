@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{}%
+\contentsline {section}{\numberline {2}Doing it}{2}{}%
+\contentsline {section}{\numberline {3}Experimenting with $\exists $}{4}{}%
+\contentsline {section}{\numberline {4}Same rule but flip the arrow}{5}{}%
+\contentsline {section}{\numberline {5}Trying this with Linear Logic!}{6}{}%
+\contentsline {section}{\numberline {6}Can we prove some stuff?}{8}{}%
+\contentsline {section}{\numberline {7}I made a mistake?}{8}{}%
+\contentsline {section}{\numberline {8}Playing more with quantifiers}{9}{}%
+\contentsline {section}{\numberline {9}Playing with quantifiers in Superdeduction}{11}{}%
+\contentsline {section}{\numberline {10}Trying a real proof (in $\mathbb {C}$)}{13}{}%
+\contentsline {subsection}{\numberline {10.1}Generating rules using Atomic Metadeduction}{13}{}%
+\contentsline {subsection}{\numberline {10.2}The proof using AM generated rules}{14}{}%
+\contentsline {subsection}{\numberline {10.3}Generating rules using Superdeduction}{15}{}%
+\contentsline {subsection}{\numberline {10.4}The proof using Superdeduction generated rules}{17}{}%
+\contentsline {subsection}{\numberline {10.5}The proof using regular embedded rules}{17}{}%
+\contentsline {subsection}{\numberline {10.6}Now using the base Atomic Metadeduction rules}{18}{}%
+\contentsline {subsection}{\numberline {10.7}A slightly more involved proof}{19}{}%

@@ -1,0 +1,108 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphicx}
+
+\begin{document}
+Problem:
+\begin{align}
+& x \in A_1 \cup A_2
+\\
+& x \in A_2 \wedge x \in A_1
+\\
+& x \in A_1
+\end{align}
+
+Problem:
+\begin{align}
+& A_1 \cup A_2 \cup A_3 \cup A_4
+\\
+& A_3 \cup A_1 \cup A_2 \cup A_4
+\end{align}
+
+Problem:
+\begin{align}
+& x \in A_1 \setminus A_2
+\\
+& x \in A_1 \cap A_2 ^C
+\\
+& x \in A_2 ^C
+\end{align}
+
+Problem:
+\begin{align}
+& A_1 \subseteq A_2 \cup A_3
+\\
+& A_1 \subseteq A_3 \wedge A_1 \subseteq A_2
+\\
+& A_3 \supseteq A_1
+\end{align}
+
+Problem:
+\begin{align}
+& x \in A_1 \triangle A_2
+\\
+& (x \in A_1 \wedge x \notin A_2 ) \vee (x \in A_2 \wedge x \notin A_1 )
+\end{align}
+
+Problem:
+\begin{align}
+& x \in A_1 \setminus ( A_2 \cup A_3 ) \setminus ( A_4 \cup A_5 ) \setminus ( A_6 \cup A_7 )
+\\
+& x \in A_1 \wedge (x \notin A_2 \cup A_4 \cup A_6 ) \wedge (x \notin A_3 \cup A_5 \cup A_7 )
+\\
+& x \in A_1
+\end{align}
+
+Problem:
+\begin{align}
+& x \in A_1 \setminus ( A_2 \setminus A_3 )
+\\
+& x \in A_1 \wedge \neg (x \in A_2 \wedge x \notin A_3 )
+\\
+& x \in A_1 \wedge (x \notin A_2 \vee x \in A_3 )
+\\
+& x \in A_1 \cap ( A_3 \setminus A_2 )
+\end{align}
+
+Problem:
+\begin{align}
+& x \in A_1 \setminus ( A_2 \setminus ( A_3 \setminus A_4 ))
+\\
+& x \in A_1 \wedge \neg(x \in A_2 \wedge\neg(x \in A_3 \wedge x \notin A_4 ))
+\\
+& x \in A_1 \wedge (x \notin A_2 \vee (x \in A_3 \wedge x \notin A_4 ))
+\\
+& x \in A_2 \rightarrow (x \in A_3 \wedge x \notin A_4 )
+\end{align}
+
+Problem:
+\begin{align}
+& A_3 \supseteq A_2 \supseteq A_1
+\\
+& A_3 \supseteq A_2
+\end{align}
+
+Problem:
+\begin{align}
+& A_1 \subset A_2
+\\
+& A_1 \neq A_2
+\end{align}
+
+Problem:
+\begin{align}
+& A_1 \subset A_2
+\\
+& \exists x. x \notin A_1 \wedge x \in A_2
+\\
+& A_2 \setminus A_1 \neq \emptyset
+\end{align}
+
+Problem:
+\begin{align}
+& (( A_1 \cup A_2 ) \cup ( A_3 \cup A_4 \cup A_5 )) \cup A_6
+\\
+& ( A_5 \cup A_6 \cup A_3 ) \cup A_1 \cup ( A_4 \cup A_2 )
+\end{align}
+
+\end{document}

@@ -1,0 +1,347 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{AtomicMetadeduction}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=27fc632655084c59e09d5ff9d1d9e030}{%
+           family={Autexier},
+           familyi={A\bibinitperiod},
+           given={Serge},
+           giveni={S\bibinitperiod}}}%
+        {{hash=408098fb95248db4d785e9e4bc2bc5ed}{%
+           family={Dietrich},
+           familyi={D\bibinitperiod},
+           given={Dominik},
+           giveni={D\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=54e0d1ec9cc88e32284023e3ad74fb07}{%
+           family={Mertsching},
+           familyi={M\bibinitperiod},
+           given={Bärbel},
+           giveni={B\bibinitperiod}}}%
+        {{hash=03998daf970b7b25bee2b84122ddeb0b}{%
+           family={Hund},
+           familyi={H\bibinitperiod},
+           given={Marcus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e878dc7f6a7cf89bef0babe7721f132b}{%
+           family={Aziz},
+           familyi={A\bibinitperiod},
+           given={Zaheer},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{edc91dd9b46d67535542bc0aabc2f305}
+      \strng{fullhash}{edc91dd9b46d67535542bc0aabc2f305}
+      \strng{bibnamehash}{edc91dd9b46d67535542bc0aabc2f305}
+      \strng{authorbibnamehash}{edc91dd9b46d67535542bc0aabc2f305}
+      \strng{authornamehash}{edc91dd9b46d67535542bc0aabc2f305}
+      \strng{authorfullhash}{edc91dd9b46d67535542bc0aabc2f305}
+      \strng{editorbibnamehash}{7e5784c7e96b220a518a306c3eb22a26}
+      \strng{editornamehash}{7e5784c7e96b220a518a306c3eb22a26}
+      \strng{editorfullhash}{7e5784c7e96b220a518a306c3eb22a26}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We present an extension of the first-order logic sequent calculus SK that allows us to systematically add inference rules derived from arbitrary axioms, definitions, theorems, as well as local hypotheses -- collectively called assertions. Each derived deduction rule represents a pattern of larger SK-derivations corresponding to the use of that assertion. The idea of metadeduction is to get shorter and more concise formal proofs by allowing the replacement of any assertion in the antecedent of a sequent by derived deduction rules that are available locally for proving that sequent. We prove the soundness and completeness for atomic metadeduction, which builds upon a permutability property for the underlying sequent calculus SK with liberalized $\delta${ \thinspace}+{\thinspace}{\thinspace}+{\thinspace}-rule.}
+      \field{booktitle}{KI 2009: Advances in Artificial Intelligence}
+      \field{isbn}{978-3-642-04617-9}
+      \field{title}{Atomic Metadeduction}
+      \field{year}{2009}
+      \field{pages}{444\bibrangedash 451}
+      \range{pages}{8}
+    \endentry
+    \entry{omega}{inbook}{}
+      \name{author}{4}{}{%
+        {{hash=27fc632655084c59e09d5ff9d1d9e030}{%
+           family={Autexier},
+           familyi={A\bibinitperiod},
+           given={Serge},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2a6d4b34d531ad98ed189648e582d627}{%
+           family={Benzmüller},
+           familyi={B\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+        {{hash=408098fb95248db4d785e9e4bc2bc5ed}{%
+           family={Dietrich},
+           familyi={D\bibinitperiod},
+           given={Dominik},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b9d8f4d2c623189878b72f61d1a1c538}{%
+           family={Siekmann},
+           familyi={S\bibinitperiod},
+           given={Jörg},
+           giveni={J\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=8fc18938f2f8dbb0b4248c74ca066a58}{%
+           family={Crocker},
+           familyi={C\bibinitperiod},
+           given={Matthew\bibnamedelima W.},
+           giveni={M\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=b9d8f4d2c623189878b72f61d1a1c538}{%
+           family={Siekmann},
+           familyi={S\bibinitperiod},
+           given={Jörg},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{9156ec8f40d2227f64cc6a3aa0139cc6}
+      \strng{fullhash}{a00f3a9d948c1bbdcbbfb034f06431c0}
+      \strng{bibnamehash}{9156ec8f40d2227f64cc6a3aa0139cc6}
+      \strng{authorbibnamehash}{9156ec8f40d2227f64cc6a3aa0139cc6}
+      \strng{authornamehash}{9156ec8f40d2227f64cc6a3aa0139cc6}
+      \strng{authorfullhash}{a00f3a9d948c1bbdcbbfb034f06431c0}
+      \strng{editorbibnamehash}{b28d89e0b645d05373af404d1447bdf8}
+      \strng{editornamehash}{b28d89e0b645d05373af404d1447bdf8}
+      \strng{editorfullhash}{b28d89e0b645d05373af404d1447bdf8}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The $\Omega$MEGA project and its predecessor, the MKRP-system, grew out of the principal dissatisfaction with the methodology and lack of success of the search-based ``logic engines'' of the 1960s and 1970s.}
+      \field{booktitle}{Resource-Adaptive Cognitive Processes}
+      \field{isbn}{978-3-540-89408-7}
+      \field{title}{$\Omega$MEGA: Resource-Adaptive Processes in an Automated Reasoning System}
+      \field{year}{2010}
+      \field{pages}{389\bibrangedash 423}
+      \range{pages}{35}
+      \verb{doi}
+      \verb 10.1007/978-3-540-89408-7_17
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-540-89408-7_17
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-540-89408-7_17
+      \endverb
+    \endentry
+    \entry{supernaturalDeduction}{unpublished}{}
+      \name{author}{3}{}{%
+        {{hash=e5787d12b53ecc2e120d38a12c6f2c76}{%
+           family={Brauner},
+           familyi={B\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=3b369ef275beda75fb5310cca3a8326a}{%
+           family={Dowek},
+           familyi={D\bibinitperiod},
+           given={Gilles},
+           giveni={G\bibinitperiod}}}%
+        {{hash=58743a7f2a1f137727e58ca92b33b90e}{%
+           family={Wack},
+           familyi={W\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{e61eb31fb53cdda9c5de170aadcfc09c}
+      \strng{fullhash}{e61eb31fb53cdda9c5de170aadcfc09c}
+      \strng{bibnamehash}{e61eb31fb53cdda9c5de170aadcfc09c}
+      \strng{authorbibnamehash}{e61eb31fb53cdda9c5de170aadcfc09c}
+      \strng{authornamehash}{e61eb31fb53cdda9c5de170aadcfc09c}
+      \strng{authorfullhash}{e61eb31fb53cdda9c5de170aadcfc09c}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{working paper or preprint}
+      \field{title}{{Normalization in Supernatural deduction and in Deduction modulo}}
+      \field{year}{2007}
+      \verb{file}
+      \verb https://inria.hal.science/inria-00141720v2/file/surded_modulo.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://inria.hal.science/inria-00141720
+      \endverb
+      \verb{url}
+      \verb https://inria.hal.science/inria-00141720
+      \endverb
+      \keyw{deduction modulo ; normalization ; superdeduction}
+    \endentry
+    \entry{superdeduction}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=e5787d12b53ecc2e120d38a12c6f2c76}{%
+           family={Brauner},
+           familyi={B\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=0e0d38700cad0af4a751c8724f4a28ad}{%
+           family={Houtmann},
+           familyi={H\bibinitperiod},
+           given={Clement},
+           giveni={C\bibinitperiod}}}%
+        {{hash=fb3f314b8151bdf2c44844b77c28e773}{%
+           family={Kirchner},
+           familyi={K\bibinitperiod},
+           given={Claude},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Wroclaw, Poland}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{9958fcdb087ce0034045b55e870e4825}
+      \strng{fullhash}{9958fcdb087ce0034045b55e870e4825}
+      \strng{bibnamehash}{9958fcdb087ce0034045b55e870e4825}
+      \strng{authorbibnamehash}{9958fcdb087ce0034045b55e870e4825}
+      \strng{authornamehash}{9958fcdb087ce0034045b55e870e4825}
+      \strng{authorfullhash}{9958fcdb087ce0034045b55e870e4825}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{Twenty-Second Annual IEEE Symposium on Logic in Computer Science - LiCS 2007}}
+      \field{month}{7}
+      \field{title}{{Principles of Superdeduction}}
+      \field{year}{2007}
+      \verb{doi}
+      \verb 10.1109/LICS.2007.37
+      \endverb
+      \verb{file}
+      \verb https://inria.hal.science/inria-00133557v3/file/superdeduction.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://inria.hal.science/inria-00133557
+      \endverb
+      \verb{url}
+      \verb https://inria.hal.science/inria-00133557
+      \endverb
+      \keyw{superdeduction ; deduction modulo ; sequent calculus ; curry-howard}
+    \endentry
+    \entry{assertion}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=13256fd730e68a3d464078730da155a0}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Xiaorong},
+           giveni={X\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=3b21bf8aebc65b49921c7d76fc66c90a}{%
+           family={Bundy},
+           familyi={B\bibinitperiod},
+           given={Alan},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{13256fd730e68a3d464078730da155a0}
+      \strng{fullhash}{13256fd730e68a3d464078730da155a0}
+      \strng{bibnamehash}{13256fd730e68a3d464078730da155a0}
+      \strng{authorbibnamehash}{13256fd730e68a3d464078730da155a0}
+      \strng{authornamehash}{13256fd730e68a3d464078730da155a0}
+      \strng{authorfullhash}{13256fd730e68a3d464078730da155a0}
+      \strng{editorbibnamehash}{3b21bf8aebc65b49921c7d76fc66c90a}
+      \strng{editornamehash}{3b21bf8aebc65b49921c7d76fc66c90a}
+      \strng{editorfullhash}{3b21bf8aebc65b49921c7d76fc66c90a}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Most automated theorem provers suffer from the problem that they can produce proofs only in formalisms difficult to understand even for experienced mathematicians. Effort has been made to reconstruct natural deduction (ND) proofs from such machine generated proofs. Although the single steps in ND proofs are easy to understand, the entire proof is usually at a low level of abstraction, containing too many tedious steps. To obtain proofs similar to those found in mathematical textbooks, we propose a new formalism, called ND style proofs at the assertion level, where derivations are mostly justified by the application of a definition or a theorem. After characterizing the structure of compound ND proof segments allowing assertion level justification , we show that the same derivations can be achieved by domain-specific inference rules as well. Furthermore, these rules can be represented compactly in a tree structure. Finally, we describe a system called PROVERB, which substantially shortens ND proofs by abstracting them to the assertion level and then transforms them into natural language.}
+      \field{booktitle}{Automated Deduction --- CADE-12}
+      \field{isbn}{978-3-540-48467-7}
+      \field{title}{Reconstructing proofs at the assertion level}
+      \field{year}{1994}
+      \field{pages}{738\bibrangedash 752}
+      \range{pages}{15}
+    \endentry
+    \entry{Schiller2011}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=f1f19317b541f0443127017e49041dab}{%
+           family={Schiller},
+           familyi={S\bibinitperiod},
+           given={Marvin\bibnamedelimb R.\bibnamedelimi G.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{f1f19317b541f0443127017e49041dab}
+      \strng{fullhash}{f1f19317b541f0443127017e49041dab}
+      \strng{bibnamehash}{f1f19317b541f0443127017e49041dab}
+      \strng{authorbibnamehash}{f1f19317b541f0443127017e49041dab}
+      \strng{authornamehash}{f1f19317b541f0443127017e49041dab}
+      \strng{authorfullhash}{f1f19317b541f0443127017e49041dab}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{DISKI}
+      \field{title}{Granularity Analysis for Tutoring Mathematical Proofs}
+      \field{year}{2011}
+      \verb{doi}
+      \verb https://doi.org/10.1111/tops.12012
+      \endverb
+    \endentry
+    \entry{schillerthesis}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=f1f19317b541f0443127017e49041dab}{%
+           family={Schiller},
+           familyi={S\bibinitperiod},
+           given={Marvin\bibnamedelimb R.\bibnamedelimi G.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Universität des Saarlandes}%
+      }
+      \strng{namehash}{f1f19317b541f0443127017e49041dab}
+      \strng{fullhash}{f1f19317b541f0443127017e49041dab}
+      \strng{bibnamehash}{f1f19317b541f0443127017e49041dab}
+      \strng{authorbibnamehash}{f1f19317b541f0443127017e49041dab}
+      \strng{authornamehash}{f1f19317b541f0443127017e49041dab}
+      \strng{authorfullhash}{f1f19317b541f0443127017e49041dab}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{Mechanizing Proof Step Evaluation for Mathematics Tutoring - The Case of Granularity}
+      \field{year}{2005}
+      \verb{urlraw}
+      \verb https://page.mi.fu-berlin.de/cbenzmueller/papers/2005-schiller-thesis.pdf
+      \endverb
+      \verb{url}
+      \verb https://page.mi.fu-berlin.de/cbenzmueller/papers/2005-schiller-thesis.pdf
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

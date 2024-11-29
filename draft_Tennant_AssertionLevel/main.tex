@@ -1,0 +1,862 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphicx, tcolorbox}
+\usepackage{enumitem, bussproofs, cmll}
+\parskip = .2in
+\parindent = 0in
+
+\title{Assertion Level Rules in Tennant's System $\mathbb{C}$}
+\author{Elliot Bobrow}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+Neil Tennant defines a system $\mathbb{C}$ which enforces relevance and removes
+the Ex Falso rule. Some other bozos introduce a deranged system to generate
+Sequent Calculus rules from assertions. Let's combine them.
+
+\section{Doing it}
+
+We start with the simple assertion $\forall n.\forall m.n<m\rightarrow
+S(n)<S(m)$. Following the rules outlined in Atomic Metadeduction, we first
+exhaustively apply the rules of our calculus to obtain every possible tree (of
+which there is one):
+% \[
+%     \frac{\frac{H_{1A}\vdash n<m\quad H_{1b},S(n)<S(m)\vdash
+%     H_2}{H_{1A},H_{1B},n<m\rightarrow S(n)<S(m)\vdash H_2}\rightarrow
+%     L}{H_{1A},H_{1B},\forall n.\forall m.n<m\rightarrow S(n)<S(m)\vdash
+%     H_2}\forall L' (\times 2)
+% \]
+\begin{prooftree}
+    \AxiomC{$H_{1A}\vdash n<m$}
+    \AxiomC{$H_{1B},S(n)<S(m)\vdash H_2$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$H_{1A},H_{1B},n<m\rightarrow S(n)<S(m)\vdash H_2$}
+    \RightLabel{$\forall L'(\times 2)$}
+    \UnaryInfC{$H_{1A},H_{1B},\forall n.\forall m.n<m\rightarrow S(n)<S(m)\vdash
+    H_2$}
+\end{prooftree}
+
+This uses my $\forall L'$ rule
+\begin{prooftree}
+    \AxiomC{$\Delta,\psi^x:\theta$}
+    \RightLabel{$\forall L'\quad\quad\text{$x$ closed term}$}
+    \UnaryInfC{$\Delta,\forall x\psi(x):\theta$}
+\end{prooftree}
+to replace Tennant's
+\begin{prooftree}
+    \AxiomC{$\Delta,\psi^x_{t_1},\dots,\psi^x_{t_n}:\theta$}
+    \RightLabel{$\forall L$}
+    \UnaryInfC{$\Delta,\forall x\psi(x)$}
+\end{prooftree}
+in line with the fact that AM removes the CONTR rule when deriving these
+assertion level rules.
+
+So anyways now there are three possible rules. By instantiating $H_{1A}=n<m$ we
+get
+\[
+    \frac{\Gamma,S(n)<S(m)\vdash\Delta}{\Gamma,n<m\vdash\Delta}.
+\]
+This removes the $n<m$ from the assumptions of the top sequent in the rule in
+AM. I think that's good because you probably just want to use one or the other.
+By instantiating $H_2=S(n)<S(m)$ we get
+\[
+    \frac{\Gamma\vdash n<m,\Delta}{\Gamma\vdash S(n)<S(m),\Delta}.
+\]
+This seems good. Is it the R version of the above. We probably dont want
+$\Delta$ but we do need $\Gamma$? (Interesting--this time
+identical to the one in AM). Finally, if we instantiate both,
+\[
+    \frac{}{\Gamma,n<m\vdash S(n)<S(m),\Delta}.
+\]
+This time we definitely don't want $\Gamma$ and $\Delta$.
+
+\section{Experimenting with $\exists$}
+
+Now let's try $\forall X\forall Y.X\star Y\rightarrow\exists a.(a\in X)\wedge
+(a\in Y)$ where $\star$ is a symbol that Prof Stone thinks should exist. Start
+the tree:
+\[
+    \frac{H_{1A}\vdash X\star Y\quad H_{1B},\exists a.(a\in X)\wedge (a\in
+    Y)\vdash H_2}{H_1,X\star Y\rightarrow\exists a.(a\in X)\wedge(a\in
+    Y)\vdash H_2}\rightarrow L
+\]
+Here we reach a crossroads. In AM, there is no $\exists$ so we replace $\exists
+x.F$ with $\neg\forall x.\neg F$. If we do that, because $\mathbb{C}$ has no Ex
+Falso rule, we are stuck unless $H_2=\bot$. Let's try stopping here and
+producing rules.
+\[
+    \frac{\Gamma,\exists a.(a\in X)\wedge(a\in Y)\vdash\Delta}{\Gamma,X\star
+    Y\vdash\Delta}\quad \frac{\Gamma\vdash X\star Y,\Delta}{\Gamma\vdash\exists
+    (\dots)}\quad \frac{}{\Gamma,X\star
+    Y\vdash\exists(\dots),\Delta}
+\]
+Okay these are just like the ones we just did. But the point is to get rid of
+existentials!  What if now we try applying Tennant's $\exists L$ rule but NOT
+his $\wedge L$ rule:
+\begin{prooftree}
+    \AxiomC{$H_{1A}\vdash X\star Y$}
+                                    % \AxiomC{$H_{1BA}\vdash a\in X,H_2$}
+                                    % \AxiomC{$H_{1BB}\vdash a\in Y,H_2$}
+                                    % \RightLabel{$\wedge R$}
+                                    \AxiomC{$H_{1B},(a\in X)\wedge(a\in Y)\vdash H_2$}
+                                    \RightLabel{$\exists L$}
+                                    \UnaryInfC{$H_{1B},\exists a.(a\in X)\wedge(a\in Y)\vdash H_2$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$H_1,X\star Y\rightarrow\exists a.(a\in X)\wedge(a\in Y)\vdash
+    H_2$}
+\end{prooftree}
+% Note that the actual $\mathbb{C}$ deals only with single conclusion subsequents
+% but we allow $H_2$ to come along for the ride.
+
+With $H_{1A}=X\star Y$:
+\[
+    \frac{H_{1},(a\in X)\wedge(a\in Y)\vdash H_2}{X\star
+    Y,H_{1}\vdash H_2}
+\]
+note with $\wedge L$ we could product incorrect rules here to do with the lack
+of Skolem whatever. we NEED both requirements on $a$.
+
+With $H_2=a\in X\wedge a\in Y$:
+\[
+    \frac{H_{1}\vdash X\star Y}{H_{1}\vdash a\in X\wedge a\in Y}
+\]
+note with $\wedge L$ we could also have the above but with only half in the
+bottom. not incorrect but a little silly
+
+With both:
+\[
+\frac{}{X\star Y\vdash a\in X\wedge a\in Y}
+\]
+
+So in the cases where we instantiate with the $a$ stuff we do want a Skolen
+fuction or something to show that it's not ALL $a$. Or we should have just
+stopped before applying $\exists R$. In other words we should leave the
+$\exists$ if is occurs in the bottom of our new rule. Algorithm could be
+instantiate $H_1$ and $H_2$ and then apply AXIOM and THEN apply $\exists$ rules.
+
+What happens if we run this assertion through the regular rules? If we treat
+$\exists a.\cdots$ as $\neg\forall a.\neg\cdots$ and don't use $\wedge R$
+becaues it isn't defined in AM, then we get the rules
+\[
+    \frac{\Gamma,X\star Y,a(X,Y)\in X\wedge a(X,Y)\in Y\vdash\Delta}{\Gamma,A\star Y\vdash\Delta}
+\]
+
+\[
+    \frac{\Gamma\vdash X\star Y,\Delta}{\Gamma\vdash a(X,Y)\in X\wedge a(X,Y)\in
+    Y,\Delta}
+\]
+
+\[
+    \frac{}{\Gamma,X\star Y\vdash a(X,Y)\in X\wedge a(X,Y)\in Y,\Delta}
+\]
+where $a(X,Y)$ is a Skolem function which we just assume to be the correct
+function? This rule could not be automated I think.
+
+\section{Same rule but flip the arrow}
+
+\begin{prooftree}
+    % \AxiomC{$H_{1BA}\vdash a\in X,H_2$}
+    % \AxiomC{$H_{1BB}\vdash a\in Y,H_2$}
+    % \RightLabel{$\wedge R$}
+    \AxiomC{$H_{1B}\vdash (a\in X)\wedge(a\in Y)$}
+    \RightLabel{$\exists R$}
+    \UnaryInfC{$H_{1A}\vdash \exists a.(a\in X)\wedge(a\in Y)$}
+                                    \AxiomC{$H_{1B},X\star Y\vdash H_2$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$H_1,\exists a.(a\in X)\wedge(a\in Y)\rightarrow X\star Y\vdash H_2$}
+\end{prooftree}
+Gives rules
+\[
+\frac{H_1,X\star Y\vdash H_2}{H_1,(a\in X)\wedge(a\in Y)\vdash H_2}\quad\quad
+\frac{H_1\vdash (a\in X)\wedge(a\in Y)}{H_1\vdash X\star Y}
+\]
+
+\[
+    \frac{}{(a\in X)\wedge(a\in Y)\vdash X\star Y}
+\]
+These work, again because we skipped the $\wedge R$ application. Almost like we
+should stop applying rules when we reach an $\exists$ so that all the
+requirements stay together? As long as the introduced variable is unused before
+the application of the rule.
+
+\section{Trying this with Linear Logic!}
+
+We try the silly assertion $A\oplus B\multimap C\otimes D$.
+\begin{prooftree}
+    \AxiomC{$H_{1AA}\vdash A$}
+    \AxiomC{$H_{1AB}\vdash B$}
+    \RightLabel{$\otimes R$}
+    \BinaryInfC{$H_{1A}\vdash A\otimes B$}
+
+                                            \AxiomC{$H_{1B},C\vdash H_2$}
+                                            \AxiomC{$H_{1B},D\vdash H_2$}
+                                            \RightLabel{$\oplus L$}
+                                            \BinaryInfC{$H_{1A},C\oplus D\vdash H2$}
+    \RightLabel{$\multimap L$}
+    \BinaryInfC{$H1,A\oplus B\multimap C\otimes D\vdash H2$}
+\end{prooftree}
+If we set $H_{1AA}=A$ and DON'T instantiate the other $H$s (this diverges from
+the given algorithm), we get the rule
+\[
+    \frac{H_{1AB}\vdash B\quad H_{1B},C\vdash H_2\quad H_{1B},D\vdash
+    H_2}{A,H_{1AB},H_{1B}\vdash H_2}.
+\]
+The reason we want to do it like this is that the linear logic rules build in
+how resources are used, and we want to keep that information instead of
+uniformly tacking on a $\Gamma$ to all leaves.
+
+The rest of the rules are as follows. Doing $H_{1AA}=A$ and $H_{1AB}=B$ gives
+\[
+    \frac{H_{1B},C\vdash H_2\quad H_{1B},D\vdash H_2}{A,B,H_{1B}\vdash H_2}.
+\]
+Doing $H_2=C$:
+\[
+    \frac{H_{1AA}\vdash A\quad H_{1AB}\vdash B\quad H_{1B},D\vdash
+    C}{H_{1AA},H_{1AB},H_{1B}\vdash C}.
+\]
+Doing $H_2=C,D$:
+\[
+    \frac{H_{1AA}\vdash A\quad H_{1AB}\vdash B}{H_{1AA},H_{1AB},H_{1B}\vdash C,D}.
+\]
+Uh oh! We don't want $H_{1B}$. So when we instantiate a leaf we also need to
+check if there are new unused assumptions, in which case we get rid of them.
+
+Here is my new algorithm for linear logic: Starting with the sequent
+$\Gamma,F\vdash\Delta$, exhaustively apply the rules to generate all possible
+trees (splitting $\Gamma$ and $\Delta$ as needed). Then, determine
+instantiations of $\Gamma$ and $\Delta$ as follows. We want to enable one or
+more applications of the AXIOM rule on leaves. Instantiate a $\Gamma$ or
+$\Delta$ fragment with an atom from the other side of the turnstyle. IMPORTANT:
+If you are instantiating $\Delta$, you must use ALL atoms from the other side of
+the turnstyle. Then, remove any unused assumptions or conclusions from the leaf.
+Also, if it is a fragment that is present in multiple leaves, you may need to
+instantiate it with all atoms from both leaves.
+
+Then, assemble the rule with all unused leaves on the top (keeping info about
+$\Gamma$ and $\Delta$ fragments) and the bottom with the reassembled
+$\Gamma\vdash\Delta$.
+
+I applied this process to the following:
+\begin{align*}
+    A\otimes B &\multimap C \\
+    A\oplus B &\multimap C \\
+    A\& B &\multimap C \\
+    A\parr B &\multimap C \\
+    A &\multimap C\otimes D \\
+    A &\multimap C\oplus D \\
+    A &\multimap C\& D \\
+    A &\multimap C\parr D
+\end{align*}
+Maybe I'll type them up. They're in my camera roll and look reasonable.
+
+\section{Can we prove some stuff?}
+
+Soundness of AM: For all sets of formulas Th, all formulas F and all proofs of
+$\Gamma\vdash_{Th,F}\Delta$ there exists a proof for $\Gamma,F\vdash_{Th}\Delta$
+without $F$-rules.
+
+Their proof involves the use of CUT, which we don't have in $\mathbb{C}$.
+
+TODO
+
+Next steps:
+\begin{enumerate}
+    \item Try proving some stuff
+    \item Try more things in $\mathbb{C}$
+    \item Read about Skolem, figure out why AM uses Skolem functions at all,
+        read about the even more liberated $\delta$-rule
+    \item Organize this doc
+\end{enumerate}
+
+\section{I made a mistake?}
+
+I don't know what the fuck happened today but I guess I've been doing it wrong
+the whole time? Look:
+\begin{prooftree}
+    \AxiomC{$H_1\vdash A,H_2$}
+        \AxiomC{$H_1,B\vdash H_2$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$H_1,A\rightarrow B\vdash H_2$}
+\end{prooftree}
+Now instantiate $H_1=A$:
+\[
+\frac{\Gamma,A,B\vdash\Delta}{\Gamma,A\vdash\Delta}.
+\]
+That's what we were getting before. But if we instantiate $H_2=B$:
+\[
+\frac{\Gamma\vdash A,B,\Delta}{\Gamma\vdash B,\Delta}.
+\]
+We shouldn't have $B$ in the top sequent!! Was I doing something different
+before or just fell asleep and didn't notice because their rules don't have $B$
+in the top sequent??
+
+Now try using Tennant's rule:
+\begin{prooftree}
+    \AxiomC{$H_{1A}\vdash A$}
+        \AxiomC{$H_{1B},B\vdash H_2$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$H_{1A},H_{1B},A\rightarrow B\vdash H_2$}
+\end{prooftree}
+and the slightly revised algorithm as follows: Instantiate some of the
+hypotheses as in the MD paper. However, for uninstantiated hypotheses we want to
+leave them instead of instantiating them as empty. The only exception is if we
+apply AXIOM to a leaf and one of the hypotheses is unused---then for relevance,
+it must be empty (for example, $H_{1B}$ if we instantiave $H_2=B$). Then
+reassemble the rule but do not tack on $\Gamma$ and $\Delta$
+
+Gives rules:
+\[
+    \frac{H_{1B},B\vdash H_2}{H_{1B},A\vdash H_2}
+    \quad\quad\quad\quad
+    \frac{H_{1A}\vdash A}{H_{1A}\vdash B}
+    \quad\quad\quad\quad
+    \frac{}{A\vdash B}
+\]
+These actually look pretty good.
+
+In summary, the transition from MD to $\mathbb{C}$ is
+\[
+\frac{\Gamma,A,B\vdash\Delta}{\Gamma,A\vdash\Delta}\longrightarrow
+    \frac{\Gamma,B\vdash \Delta}{\Gamma,A\vdash \Delta}
+\]
+
+\[
+\frac{\Gamma\vdash A,B,\Delta}{\Gamma\vdash B,\Delta}\longrightarrow
+    \frac{\Gamma\vdash A}{\Gamma\vdash B}
+\]
+
+\[
+\frac{}{\Gamma,A\vdash B,\Delta}\longrightarrow
+\frac{}{A\vdash B}
+\]
+
+\section{Playing more with quantifiers}
+
+Try this algebra thing:
+\begin{prooftree}
+    \AxiomC{$H_1\vdash f()^2=1,H_2$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$H_1\vdash \forall x.x^2=1,H_2$}
+            \AxiomC{$H_1,xy=yx\vdash H_2$}
+            \RightLabel{$\forall L (\times 2)$}
+            \UnaryInfC{$H_1,\forall x.\forall y.xy=yx$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$H_1,(\forall x.x^2=1)\rightarrow (\forall x.\forall y.xy=yx)\vdash H_2$}
+\end{prooftree} 
+where $f()$ is a Skolem function of 0 variables. For this trivial example, $f()$
+is just a constant so maybe it doesn't really make sense that it has to be a
+Skolem function.
+
+Now try this:
+\begin{prooftree}
+    \AxiomC{$H_1\vdash P(x,f(x)),H_2$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$H_1\vdash \forall y.P(x,y),H_2$}
+        \AxiomC{$H_1,Q(x)\vdash H_2$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$H_1,(\forall y.P(x,y))\rightarrow Q(x)\vdash H_2$}
+\end{prooftree}
+This gives
+\[
+    \frac{\Gamma,P(x,f(x)),Q(x)\vdash\Delta}{\Gamma,P(x,f(x))\vdash\Delta}
+    \quad\quad
+    \frac{\Gamma\vdash P(x,f(x)),Q(x),\Delta}{\Gamma\vdash P(x,f(x)),\Delta}
+\]
+
+\[
+    \frac{}{\Gamma,P(x,f(x))\vdash Q(x),\Delta}
+\]
+I still don't understand why $y$ should be a function of $x$. Based on the
+original assertion, it should hold for all $y$.
+
+Let's derive some rules for $\exists$ in MD. First we derive a rule for $\neg$,
+which we unwrap as $\neg P\equiv P\rightarrow\bot$. The left rule is
+\begin{prooftree}
+    \AxiomC{$\Gamma\vdash P,\Delta$}
+            \AxiomC{}
+            \UnaryInfC{$\Gamma,\bot\vdash\Delta$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma,P\rightarrow\bot\vdash\Delta$}
+\end{prooftree}
+and the right rule is
+\begin{prooftree}
+    \AxiomC{$\Gamma,P\vdash\bot,\Delta$}
+    \RightLabel{$\rightarrow R$}
+    \UnaryInfC{$\Gamma\vdash P\rightarrow\bot,\Delta$}
+\end{prooftree}
+Now we can unwrap $\exists x.P(x)$ as $\neg(\forall x.\neg P(x))$. The left rule
+is
+\begin{prooftree}
+    \AxiomC{$\Gamma,P(f(\dots))\vdash \Delta$}
+    \RightLabel{$\neg R$}
+    \UnaryInfC{$\Gamma\vdash \neg P(f(\dots)),\Delta$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$\Gamma\vdash\forall x.\neg P(x),\Delta$}
+    \RightLabel{$\neg L$}
+    \UnaryInfC{$\Gamma,\neg(\forall x.\neg P(x))\vdash\Delta$}
+\end{prooftree}
+where $f$ is the Skolem function and the right rule is
+\begin{prooftree}
+    \AxiomC{$\Gamma\vdash P(x),\Delta$}
+    \RightLabel{$\neg L$}
+    \UnaryInfC{$\Gamma,\neg P(x)\vdash \Delta$}
+    \RightLabel{$\forall L\quad\quad\text{where $H$ is closed}$}
+    \UnaryInfC{$\Gamma,\forall x.\neg P(x)\vdash \Delta$}
+    \RightLabel{$\neg R$}
+    \UnaryInfC{$\Gamma\vdash\neg(\forall x.\neg P(x)),\Delta$}
+\end{prooftree}
+
+\section{Playing with quantifiers in Superdeduction}
+
+Atomic Metadeduction is based on a system called Superdeduction. It is
+restricted to theorems of the form $\forall
+\overline{x}.(P\Leftrightarrow\varphi)$ where $P$ is an atomic proposition.
+
+What if we want to generate rules for this silly theorem: $\forall G.(\exists
+H.G\cong H)\Leftrightarrow(\exists H.H\cong G)$. It is not in the proper form,
+so first we would have to Skolemize it:
+\[
+    \forall G,f(G).G\cong f(G)\Leftrightarrow(\exists H.H\cong G).
+\]
+Now we generate the left rule with the following tree:
+\begin{prooftree}
+    \AxiomC{$\Gamma,H\cong G\vdash\Delta$}
+    \RightLabel{$\exists L\quad\quad H\notin FV(\Gamma,\Delta)$}
+    \UnaryInfC{$\Gamma,\exists H.H\cong G\vdash\Delta$}
+\end{prooftree}
+We collect premises and side conditions and replace the righthand side of our
+theorem with the left to get the rule:
+\begin{prooftree}
+    \AxiomC{$\Gamma,H\cong G\vdash\Delta$}
+    \RightLabel{$\cong L\quad\quad H\notin FV(\Gamma,\Delta)$}
+    \UnaryInfC{$\Gamma,G\cong f(G)\vdash\Delta$}
+\end{prooftree}
+where $H$ is a variable.
+The right rule goes similarly:
+\begin{prooftree}
+    \AxiomC{$\Gamma\vdash H\cong G,\Delta$}
+    \RightLabel{$\exists R$}
+    \UnaryInfC{$\Gamma\vdash\exists H.H\cong G,\Delta$}
+\end{prooftree}
+We collect premises and side conditions and replace the righthand side of our
+theorem with the left to get the rule:
+\begin{prooftree}
+    \AxiomC{$\Gamma\vdash H\cong G,\Delta$}
+    \RightLabel{$\cong R$}
+    \UnaryInfC{$\Gamma\vdash G\cong f(G),\Delta$}
+\end{prooftree}
+where $H$ is any term.
+I don't have a good intuition for these but I also don't have a good intuition
+for the regular sequent calculus quantifier rules.
+
+Also note that we don't have an axiom rule like we get in AM, but that's okay
+because we can just use the left rule and then we get to apply axiom. In AM, the
+same statement (only considering the forward direction because I am lazy) gives
+the rules, for any closed $H$,
+\[
+    \frac{\Gamma,G\cong H,f(G)\cong H\vdash\Delta}{\Gamma,G\cong H\vdash\Delta}
+    \quad
+    \frac{\Gamma\vdash G\cong H,f(G)\cong G\Delta}{\Gamma\vdash,f(G)\cong G\Delta}
+    \quad
+    \frac{}{\Gamma,G\cong H\vdash f(G)\cong G,\Delta}
+\]
+where again the third one is derivable from the first. Interestingly, we lose
+the restrictions on $H$ being fresh in the sequent.
+
+Given an arbitrary proposition $\psi\Leftrightarrow\varphi$, can we convert it
+to the necessary form for superdeduction? We can pull quantifiers out of $\psi$
+using the equivalences
+\begin{align*}
+    (\forall x\psi)\rightarrow\varphi &\equiv \exists x(\psi\rightarrow\varphi) \\
+    (\exists x\psi)\rightarrow\varphi &\equiv \forall x(\psi\rightarrow\varphi)
+\end{align*}
+and then Skolemize to remove $\exists$. I can't think of a way to convert
+something like $A\vee B\Leftrightarrow C$ into proper form.
+
+\section{Trying a real proof (in $\mathbb{C}$)}
+
+We wish to prove the theorem $\forall X.\forall Y.X\subseteq Y\rightarrow \forall Z.X\cup Z\subseteq
+Y\cup Z$. This requires the generation of inference rules for $\subseteq$ and
+$\cup$.
+
+\subsection{Generating rules using Atomic Metadeduction}
+First, subset:
+\begin{prooftree}
+    \AxiomC{$\Gamma_1\vdash X\subseteq Y$}
+        \AxiomC{$\Gamma_2\vdash a\in X$}
+            \AxiomC{$\Gamma_3,a\in Y\vdash\Delta$}
+        \RightLabel{$\rightarrow L$}
+        \BinaryInfC{$\Gamma_2,\Gamma_3,a\in X\rightarrow a\in Y\vdash\Delta$}
+        \RightLabel{$\forall L'\quad\quad\text{$a$ closed}$}
+        \UnaryInfC{$\Gamma_2,\Gamma_3,\forall a.a\in X\rightarrow a\in
+        Y\vdash\Delta$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma_1,\Gamma_2,\Gamma_3,X\subseteq Y\rightarrow (\forall
+    a.a\in X\rightarrow a\in Y)\vdash \Delta$}
+\end{prooftree}
+Now I will type up every possible rule using my revised algorithm.
+\[
+\frac{\Gamma_2\vdash a\in X\quad\Gamma_3,a\in Y\vdash\Delta}
+     {X\subseteq Y,\Gamma_2\Gamma_3\vdash\Delta}\subseteq 1
+\quad\quad
+\frac{\Gamma_1\vdash X\subseteq Y\quad\Gamma_3,a\in Y\vdash\Delta}
+     {\Gamma_1\Gamma_3,a\in X\vdash\Delta}\subseteq 2
+\]
+
+\[
+\frac{\Gamma_1\vdash X\subseteq Y\quad\Gamma_2\vdash a\in X}
+     {\Gamma_1,\Gamma_2\vdash a\in Y}\subseteq 3
+\quad\quad
+\frac{a\in Y,\Gamma_3\vdash\Delta}
+     {X\subseteq Y,a\in X,\Gamma_3\vdash\Delta}\subseteq 4
+\]
+
+\[
+\frac{\Gamma_2\vdash a\in X}
+     {X\subseteq Y,\Gamma_2\vdash a\in Y}\subseteq 5
+\quad\quad
+\frac{\Gamma_1\vdash X\subseteq Y}
+     {\Gamma_1,a\in X\vdash a\in Y}\subseteq 6
+\quad\quad
+\frac{}{X\subseteq Y,a\in X\vdash a\in Y}\subseteq 7
+\]
+Note these all look good! NOW WE HAVE TO DO THE OTHER DIRECTION BECAUSE I
+GUESSED WRONG.
+\begin{prooftree}
+    \AxiomC{$\Gamma_1,f(X,Y)\in X\vdash f(X,Y)\in Y$}
+    \RightLabel{$\rightarrow R$}
+    \UnaryInfC{$\Gamma_1\vdash f(X,Y)\in X\rightarrow f(X,Y)\in Y$}
+    \RightLabel{$\forall R'$}
+    \UnaryInfC{$\Gamma_1\vdash (\forall a.a\in X\rightarrow a\in Y)$}
+        \AxiomC{$\Gamma_2,X\subseteq Y\vdash\Delta$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma_1,\Gamma_2,(\forall a.a\in X\rightarrow a\in Y)\rightarrow X\subseteq Y\vdash\Delta$}
+\end{prooftree}
+Weird. If we instantiate $\Gamma_1=f(X,Y)\in Y$ we can close the left leaf with
+reflexivity but we have an unused premise. Oh well. We forge on.
+\[
+    \frac{\Gamma_2,X\subseteq Y\vdash\Delta}{f(X,Y)\in
+    Y,\Gamma_2\vdash\Delta}\subseteq 8*
+    \quad\quad
+    \frac{\Gamma_1,f(X,Y)\in X\vdash f(X,Y)\in Y}{\Gamma_1\vdash X\subseteq
+    Y}\subseteq 9
+\]
+
+\[
+    \frac{}{f(X,Y)\in Y\vdash X\subseteq Y}\subseteq 10*
+\]
+Again I don't know how we're supposed to use this Skolem stuff in a proof.
+
+Now we do the union rule. Both ways I guess.
+\begin{prooftree}
+    \AxiomC{$\Gamma_1\vdash a\in X\cup Y$}
+        \AxiomC{$\Gamma_2,a\in X\vdash\Gamma/\bot$}
+            \AxiomC{$\Gamma_3,a\in Y\vdash\Gamma/\bot$}
+        \RightLabel{$\vee L$}
+        \BinaryInfC{$\Gamma_2,\Gamma_3,a\in X\vee a\in Y\vdash\Delta/\bot$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma_1,\Gamma_2,\Gamma_3,a\in X\cup Y\rightarrow a\in X\vee a\in Y\vdash\Delta$}
+    \RightLabel{$\forall L'(\times 3)$}
+    \UnaryInfC{$\Gamma_1,\Gamma_2,\Gamma_3,\forall X,Y,a.a\in X\cup Y\rightarrow a\in X\vee a\in Y\vdash\Delta$}
+\end{prooftree}
+I actually so do not want to write these. Imagine them. Now the other way.
+\begin{prooftree}
+    \AxiomC{$\Gamma_1\vdash a\in X\vee a\in Y$}
+        \AxiomC{$\Gamma_2,a\in X\cup Y\vdash\Delta$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma_1,\Gamma_2,a\in X\vee a\in Y\rightarrow a\in X\cup Y\vdash\Delta$}
+    \RightLabel{$\forall L'(\times 3)$}
+    \UnaryInfC{$\Gamma_1,\Gamma_2,\forall X,Y,a.a\in X\vee a\in Y\rightarrow a\in X\cup Y\vdash\Delta$}
+\end{prooftree}
+blah blah imagine the rest (splits into two proof trees based on choice of $\vee
+R$).
+
+\subsection{The proof using AM generated rules}
+
+Start the proof:
+\begin{prooftree}
+    \AxiomC{}
+    \UnaryInfC{$f(X,Y,Z)\in Z\vdash^+f(X,Y,Z)\in Z$}
+    \RightLabel{$\cup R$}
+    \UnaryInfC{$?,f(X,Y,Z)\in Z\vdash^+.../\bot$}
+        \AxiomC{$\Pi$}
+        \RightLabel{$\cup R$}
+        \UnaryInfC{$?,f(X,Y,Z)\in X\vdash^+.../\bot$}
+    \RightLabel{$\cup L$}
+    \BinaryInfC{$X\subseteq Y,f(X,Y,Z)\in X\cup Z\vdash^+ f(X,Y,Z)\in Y\cup Z$}
+    \RightLabel{$\subseteq 9$}
+    \UnaryInfC{$X\subseteq Y\vdash^+X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$X\subseteq Y\vdash^+\forall Z.X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\rightarrow R$}
+    \UnaryInfC{$\vdash^+X\subseteq Y\rightarrow\forall Z.X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\forall R (\times 2)$}
+    \UnaryInfC{$\vdash^+\forall X.\forall Y.X\subseteq Y\rightarrow\forall
+    Z.X\cup Z\subseteq Y\cup Z$}
+\end{prooftree}
+Supposing we closed the left branch first, by the time we reach $\Pi$ we know
+that the left branch doesn't take any extra premises in its ? so $\Pi$ takes
+them all. Here is the rest of the proof:
+\begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\subseteq 7$}
+    \UnaryInfC{$X\subseteq Y,f(X,Y,Z)\in X\vdash^+f(X,Y,Z)\in Y$}
+\end{prooftree}
+My observations while writing this:
+\begin{itemize}
+    \item For binary inferences, proof search cannot guess how to split the premises
+    \item For the Skolem function, I had to add another free variable so is
+        creation of the function postponed until application of the rule? Also
+        we just treated it as a closed variable.
+    \item Did not use any of the funky rules.
+\end{itemize}
+
+\subsection{Generating rules using Superdeduction}
+
+We start with the subset rule: $\forall X,Y.(X\subseteq Y\Leftrightarrow (\forall
+a.a\in X\rightarrow a\in Y))$. This is in proper format so we are good to go. To
+generate the right rule, we are supposed to begin with the sequent
+$\Gamma\vdash\varphi,\Delta$ but System $\mathbb{C}$ only deals with single
+conclusion sequents so we remove $\Delta$.
+\begin{prooftree}
+    \AxiomC{$\Gamma,a\in X\vdash a\in Y$}
+    \RightLabel{$\rightarrow R\quad\quad\text{where $a$ fresh}$}
+    \UnaryInfC{$\Gamma\vdash a\in X\rightarrow a\in Y$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$\Gamma\vdash \forall a.a\in X\rightarrow a\in Y$}
+\end{prooftree}
+This gives the rule
+\[
+\frac{\Gamma,a\in X\vdash a\in Y}{\Gamma\vdash X\subseteq Y}\subseteq
+R\quad\quad\text{where $a$ is fresh}
+\]
+Similarly, the left rule is
+\begin{prooftree}
+    \AxiomC{$\Gamma_1\vdash a\in X$}
+    \AxiomC{$\Gamma_2,a\in Y\vdash \Delta$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma_1,\Gamma_2,a\in X\rightarrow a\in Y\vdash\Delta$}
+    \RightLabel{$\forall L'\quad\quad\text{where $a$ is a closed term?}$}
+    \UnaryInfC{$\Gamma_1,\Gamma_2,\forall a.a\in X\rightarrow a\in Y\vdash\Delta$}
+\end{prooftree}
+So the rule is
+\[
+\frac{\Gamma_1\vdash a\in X\quad\Gamma_2,a\in
+Y\vdash\Delta}{\Gamma_1,\Gamma_2,X\subseteq Y\vdash\Delta}\subseteq
+L\quad\quad\text{where $a$ is a closed term?}
+\]
+
+Similarly, we generate rules for union: $\forall X,Y,a.(a\in X\cup
+Y\Leftrightarrow a\in X\vee a\in Y$. The right rule:
+\begin{prooftree}
+    \AxiomC{$\Gamma\vdash a\in X$}
+    \RightLabel{$\vee R$}
+    \UnaryInfC{$\Gamma\vdash a\in X\vee a\in Y$}
+\end{prooftree}
+and of course, the equivalent tree with the right-hand side. This time we get
+two rules:
+\[
+\frac{\Gamma\vdash a\in X}{\Gamma\vdash a\in X\cup Y}\cup R1
+\quad\quad
+\frac{\Gamma\vdash a\in Y}{\Gamma\vdash a\in X\cup Y}\cup R2
+\]
+And the left rule:
+\begin{prooftree}
+    \AxiomC{$\Gamma_1,a\in X\vdash\Delta/\bot$}
+    \AxiomC{$\Gamma_2,a\in Y\vdash\Delta/\bot$}
+    \RightLabel{$\vee L$}
+    \BinaryInfC{$\Gamma_1,\Gamma_2,a\in X\vee a\in Y\vdash\Delta/\bot$}
+\end{prooftree}
+This generates the rule
+\[
+\frac{\Gamma_1,a\in X\vdash\Delta/\bot\quad\Gamma_2,a\in Y\vdash\Delta/\bot}
+     {\Gamma_1,\Gamma_2,a\in X\cup Y\vdash\Delta/\bot}\cup L
+\]
+
+\subsection{The proof using Superdeduction generated rules}
+
+\begin{prooftree}
+    \AxiomC{}
+    \UnaryInfC{$a\in Z\vdash^+a\in Z$}
+    \RightLabel{$\cup R2$}
+    \UnaryInfC{$?,a\in Z\vdash^+.../\bot$}
+        \AxiomC{}
+        \UnaryInfC{$?\vdash a\in X$}
+            \AxiomC{}
+            \UnaryInfC{$?,a\in Y\vdash a\in Y$}
+        \RightLabel{$\subseteq L$}
+        \BinaryInfC{$X\subseteq Y,a\in X\vdash a\in Y$}
+        \RightLabel{$\cup R1$}
+        \UnaryInfC{$?,a\in X\vdash^+.../\bot$}
+    \RightLabel{$\cup L$}
+    \BinaryInfC{$X\subseteq Y,a\in X\cup Z\vdash^+ a\in Y\cup Z$}
+    \RightLabel{$\subseteq R$}
+    \UnaryInfC{$X\subseteq Y\vdash^+X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$X\subseteq Y\vdash^+\forall Z.X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\rightarrow R$}
+    \UnaryInfC{$\vdash^+X\subseteq Y\rightarrow\forall Z.X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\forall R (\times 2)$}
+    \UnaryInfC{$\vdash^+\forall X.\forall Y.X\subseteq Y\rightarrow\forall
+    Z.X\cup Z\subseteq Y\cup Z$}
+\end{prooftree}
+
+Well look at that, the proof is a little more complicated (look at the right
+branch).
+
+\subsection{The proof using regular embedded rules}
+
+Let $H_\subseteq=\forall X,Y.(X\subseteq Y\Leftrightarrow (\forall a.a\in X\rightarrow
+a\in Y))$ and $H_\cup=\forall X,Y,a.(a\in X\cup Y\Leftrightarrow a\in X\vee a\in
+Y$. Also I'm going to cut some corners namely with the picking of a direction of
+$\Leftrightarrow$.
+
+\begin{prooftree}
+    \AxiomC{}
+    \UnaryInfC{$X\subseteq Y\vdash X\subseteq Y$}
+        \AxiomC{$\Pi$}
+    \BinaryInfC{$H_\cup,H_\subseteq(X\cup Z,Y\cup Z),H_\subseteq(X,Y),X\subseteq Y,a\in X\cup Z\vdash a\in Y\cup Z$}
+    \RightLabel{$\forall L(\times 2)$}
+    \UnaryInfC{$H_\subseteq,H_\cup,X\subseteq Y\vdash X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$H_\subseteq,H_\cup,X\subseteq Y\vdash\forall Z.X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\rightarrow R$}
+    \UnaryInfC{$H_\subseteq,H_\cup\vdashX\subseteq Y\rightarrow\forall Z.X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\forall R (\times 2)$}
+    \UnaryInfC{$H_\subseteq,H_\cup\vdash\forall X.\forall Y.X\subseteq
+    Y\rightarrow\forall Z.X\cup Z\subseteq Y\cup Z$}
+\end{prooftree}
+
+Wow this sucks. Now $\Pi$ is
+\begin{prooftree}
+    \AxiomC{$\Omega$}
+        \AxiomC{}
+        \UnaryInfC{$X\cup Z\subseteq Y\cup Z\vdash X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$H_\cup,H_\subseteq(X\cup Z,Y\cup Z),\forall a.a\in X\rightarrow
+    a\in Y\vdash X\cup Y\subseteq Y\cup Z$}
+\end{prooftree}
+
+Almost done. $\Omega$ is
+\begin{prooftree}
+    \AxiomC{}
+    \UnaryInfC{$a\in X\cup Z\vdash a\in X\cup Z$}
+        \AxiomC{you get the idea}
+        \UnaryInfC{$H_\cup(Y,Z),a\in X\rightarrow a\in Y,a\in X\vee a\in Z\vdash
+        a\in Y\cup Z$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$H_\cup(X,Z),H_\cup(Y,Z),a\in X\rightarrow a\in Y,a\in X\cup Z\vdash
+    a\in Y\cup Z$}
+    \RightLabel{$\rightarrow R$}
+    \UnaryInfC{$H_\cup(X,Z),H_\cup(Y,Z),a\in X\rightarrow a\in Y\vdash a\in
+    X\cup Z\rightarrow a\in Y\cup Z$}
+    \RightLabel{$\forall L (\times 3)$}
+    \UnaryInfC{$H_\cup,\forall a.a\in X\rightarrow a\in Y\vdash a\in
+    X\cup Z\rightarrow a\in Y\cup Z$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$H_\cup,\forall a.a\in X\rightarrow a\in Y\vdash \forall a.a\in
+    X\cup Z\rightarrow a\in Y\cup Z$}
+\end{prooftree}
+
+\subsection{Now using the base Atomic Metadeduction rules}
+
+First, subset:
+\begin{prooftree}
+    \AxiomC{$\Gamma\vdash X\subseteq Y,\Delta$}
+        \AxiomC{$\Gamma\vdash a\in X,\Delta$}
+            \AxiomC{$\Gamma,a\in Y\vdash\Delta$}
+        \RightLabel{$\rightarrow L$}
+        \BinaryInfC{$\Gamma,a\in X\rightarrow a\in Y\vdash\Delta$}
+        \RightLabel{$\forall L\quad\quad\text{$a$ closed}$}
+        \UnaryInfC{$\Gamma,\forall a.a\in X\rightarrow a\in Y\vdash\Delta$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma,X\subseteq Y\rightarrow (\forall
+    a.a\in X\rightarrow a\in Y)\vdash \Delta$}
+\end{prooftree}
+Imagine the rules because I'm tired of typing. They look like the ones for
+$\mathbb{C}$ but there is always a $\Delta$ in the conclusions of each sequent
+and the premises on the bottom sequent are duplicated in the premises of the
+top ones.
+\begin{prooftree}
+    \AxiomC{$\Gamma,f(X,Y)\in X\vdash f(X,Y)\in Y,\Delta$}
+    \RightLabel{$\rightarrow R$}
+    \UnaryInfC{$\Gamma\vdash f(X,Y)\in X\rightarrow f(X,Y)\in Y,\Delta$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$\Gamma\vdash (\forall a.a\in X\rightarrow a\in Y),\Delta$}
+        \AxiomC{$\Gamma,X\subseteq Y\vdash\Delta$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma,(\forall a.a\in X\rightarrow a\in Y)\rightarrow X\subseteq Y\vdash\Delta$}
+\end{prooftree}
+Imagine the rules again.
+
+Now we do the union rule. Both ways I guess.
+\begin{prooftree}
+    \AxiomC{$\Gamma\vdash a\in X\cup Y,\Delta$}
+        \AxiomC{$\Gamma,a\in X\vdash\Gamma$}
+            \AxiomC{$\Gamma,a\in Y\vdash\Gamma$}
+        \RightLabel{$\vee L$}
+        \BinaryInfC{$\Gamma,a\in X\vee a\in Y\vdash\Delta$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma,a\in X\cup Y\rightarrow a\in X\vee a\in Y\vdash\Delta$}
+    \RightLabel{$\forall L(\times 3)$}
+    \UnaryInfC{$\Gamma,\forall X,Y,a.a\in X\cup Y\rightarrow a\in X\vee a\in Y\vdash\Delta$}
+\end{prooftree}
+I actually so do not want to write these. Imagine them. Now the other way.
+\begin{prooftree}
+    \AxiomC{$\Gamma\vdash a\in X, a\in Y,\Delta$}
+    \RightLabel{$\vee L$}
+    \UnaryInfC{$\Gamma\vdash a\in X\vee a\in Y,\Delta$}
+        \AxiomC{$\Gamma,a\in X\cup Y\vdash\Delta$}
+    \RightLabel{$\rightarrow L$}
+    \BinaryInfC{$\Gamma,a\in X\vee a\in Y\rightarrow a\in X\cup Y\vdash\Delta$}
+    \RightLabel{$\forall L(\times 3)$}
+    \UnaryInfC{$\Gamma,\forall X,Y,a.a\in X\vee a\in Y\rightarrow a\in X\cup Y\vdash\Delta$}
+\end{prooftree}
+
+The proof becomes
+\begin{prooftree}
+    \AxiomC{}
+    \UnaryInfC{$f(X,Y,f())\in f()\vdash^+f(X,Y,f())\in f()$}
+    \RightLabel{$\cup R$}
+    \UnaryInfC{$X\subseteq Y,f(X,Y,f())\in f()\vdash^+...$}
+        \AxiomC{$\Pi$}
+        \RightLabel{$\cup R$}
+        \UnaryInfC{$X\subseteq Y,f(X,Y,f())\in X\vdash^+...$}
+    \RightLabel{$\cup L$}
+    \BinaryInfC{$X\subseteq Y,f(X,Y,f())\in X\cup f()\vdash^+ f(X,Y,f())\in Y\cup f()$}
+    \RightLabel{$\subseteq 9$}
+    \UnaryInfC{$X\subseteq Y\vdash^+X\cup f()\subseteq Y\cup f()$}
+    \RightLabel{$\forall R$}
+    \UnaryInfC{$X\subseteq Y\vdash^+\forall Z.X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\rightarrow R$}
+    \UnaryInfC{$\vdash^+X\subseteq Y\rightarrow\forall Z.X\cup Z\subseteq Y\cup Z$}
+    \RightLabel{$\forall R (\times 2)$}
+    \UnaryInfC{$\vdash^+\forall X.\forall Y.X\subseteq Y\rightarrow\forall
+    Z.X\cup Z\subseteq Y\cup Z$}
+\end{prooftree}
+and then
+\begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\subseteq 7$}
+    \UnaryInfC{$X\subseteq Y,f(X,Y,Z)\in X\vdash^+f(X,Y,Z)\in Y$}
+\end{prooftree}
+
+\subsection{A slightly more involved proof}
+
+Now what if we want to prove $A\subseteq B,B\subseteq C\rightarrow A\cup
+Z\subseteq C\cup Z$? In a human proof, there are two approaches, seemingly
+equally good:
+\begin{enumerate}
+    \item By transitivity, $A\subseteq C$. Then from our previous result, $A\cup
+        Z\subseteq C\cup Z$.
+    \item $A\cup Z\subseteq B\cup Z\subseteq C\cup Z$.
+\end{enumerate}
+I don't know how to formalize the second.
+
+\end{document}

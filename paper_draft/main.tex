@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, graphicx, tcolorbox}
+\usepackage{enumitem, bussproofs, cmll}
+\usepackage{biblatex}
+\addbibresource{main.bib}
+\parskip = .2in
+\parindent = 0in
+
+\title{Title}
+\author{Elliot Bobrow}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Theorem proving has become a relatively mature field, and there are many systems
+that can judge the correctness of a proof---see interactive theorem provers such
+as Coq, Lean, and Agda; or automated theorem provers such as Z3 and Vampire.
+However, there is less research into judging a proof readable; that is, are its
+steps of an appropriate size? For example, the following is a ``correct'' proof
+that $((A\setminus B)\cup C)\setminus D\subseteq (A\cup C)\setminus D$ for any
+sets $A$, $B$, $C$, and $D$:
+\begin{proof}
+    Let $x\in ((A\setminus B)\cup C)\setminus D$. Then $x\in (A\cup C)\setminus
+    D$.
+\end{proof}
+However, all human readers would likely agree that this proof is insufficient
+because its step is too large. A reader may not be able to follow from the first
+step to the second, and furthermore, if this proof were submitted by a student
+as part of an assignment, the grader would not be able to tell if the student
+had genuine mastery of the material.
+On the flip side, in a complicated proof in abstract algebra, it would be
+unnecessary and likely even distracting to spell out every detail about
+manipulating the underlying sets of each algebraic object.
+There must be some way to determine whether a given proof step is an appropriate
+size.
+
+A system that could judge the legibility of a proof would be particularly
+applicable in a teaching setting, where students are just learning how to write
+proofs and could benefit from immediate feedback on their steps.
+
+This paper contributes... ?
+
+\section{Literature Review}
+Much of the existing work on the subject of proof granularity comes from Marvin
+Schiller \cite{Schiller2011,schillerthesis}. In his experiments, he generated
+proof steps using the $\Omega$mega system \cite{omega}, and then asked four
+experts to rate the proof steps as either too small, too big, or appropriate.
+Using that data, he generated a decision tree which classifies a step as
+appropriate if it contains 1 or 2 assertion level rules, and too big otherwise.
+
+This brings our attention to ``assertion level'' steps. The concept of the
+assertion level was initially introduced by Huang \cite{assertion}. He proposes
+that there are three possible levels of justifications in proofs, ranging from
+least to most abstract. The ``logic level'' is the level of natural deduction
+rules, which is the level that computers reason at. The ``assertion level''
+encapsulates the application of axioms, definitions, or theorems (collectively
+called assertions). Finally, the ``proof level'' involves meta-arguments within
+proofs. He finds that the assertion level is the most common, and proposes an
+algorithm for reconstructing natural deduction proofs at the assertion level.
+
+Following Huang, others have proposed new logical systems to skip the middleman
+entirely, baking assertions directly into the logic. The \textit{supernatural
+deduction} extends natural deduction with new inference rules generated from
+assertions of the form $\forall\overline{x}(P\Leftrightarrow\varphi)$ where $P$
+is atomic \cite{supernaturalDeduction}. This was later extended to the sequent
+calculus with the \textit{superdeduction calculus} \cite{superdeduction}.
+Finally, Autexier and Dietrich presented \textit{atomic metadeduction}, an
+extension of \textit{superdeduction} that allows for the generation of rules
+from arbitrary assertions \cite{AtomicMetadeduction}.
+
+\section{Possible topics}
+\subsection{Applying Atomic Metadeduction to relevance systems}
+\subsection{My system of axioms}
+\subsection{Could write a whole section on everything wrong with Schiller}
+
+\printbibliography
+
+\end{document}
