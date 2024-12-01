@@ -112,6 +112,38 @@ templates = [
             "?e \\cup ?f \\cup ?c \\cup ?a \\cup ?d \\cup ?b",
             "( ?e \\cup ?f \\cup ?c ) \\cup ?a \\cup ( ?d \\cup ?b )",
         ]
+    ],
+    [
+        ["x \\in ( ?a \\cup ?b ) \\triangle ( ?c \\setminus ?d )"],
+        [
+            "x \\in ( ?a \\cup ?b ) \\setminus ( ?c \\setminus ?d ) \\vee x \\in ( ?c \\setminus ?d ) \\setminus ( ?a \\cup ?b )",
+            "x \\in (( ?a \\cup ?b ) \\setminus ( ?c \\setminus ?d )) \\cup (( ?c \\setminus ?d ) \\setminus ( ?a \\cup ?b ))",
+        ],
+        ["(x \\in ( ?a \\cup ?b ) \\wedge (x \\notin ?c \\vee x \\in ?d )) \\vee (x \\in ?c \\wedge x \\notin ?a \\cup ?b \\cup ?d )"]
+    ],
+    [
+        ["x \\notin ?a \\wedge x \\in ?a \\cup ?b"],
+        ["x \\notin ?a \\wedge (x \\in ?a \\vee x \\in ?b )"],
+        ["x \\in ?b"]
+    ],
+    [
+        ["?a \\subseteq ?b \\wedge ?a \\subseteq ?c \\wedge ?a \\subseteq ?d"],
+        ["?a \\subseteq ?b \\cap ?c \\cap ?d"]
+    ],
+    [
+        [
+            "?b \\subseteq ?a \\wedge ?c \\subseteq ?a \\wedge ?d \\subseteq ?a",
+            "?a \\supseteq ?b \\wedge ?a \\supseteq ?c \\wedge ?a \\supseteq ?d"
+        ],
+        [
+            "?b \\cap ?c \\cap ?d \\subseteq ?a",
+            "?a \\supseteq ?b \\cap ?c \\cap ?d"
+        ]
+    ],
+    [
+        ["?a \\subseteq ?b \\subseteq ?c"],
+        ["?a \\cup ?d \\subseteq ?b \\cup ?d \\subseteq ?c \\cup ?d"],
+        ["?a \\cup ?d \\subseteq ?c \\cup ?d"],
     ]
 ]
 
