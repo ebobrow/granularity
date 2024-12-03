@@ -5,104 +5,128 @@
 \begin{document}
 Problem:
 \begin{align}
-& x \in A_1 \cup A_2
+& x \in A \cup B
 \\
-& x \in A_2 \wedge x \in A_1
+& x \in A \wedge x \in B
 \\
-& x \in A_1
+& x \in B
 \end{align}
 
 Problem:
 \begin{align}
-& A_1 \cup A_2 \cup A_3 \cup A_4
+& x \in A \setminus B
 \\
-& A_3 \cup A_1 \cup A_2 \cup A_4
+& x \in A \cap B ^C
+\\
+& x \in A
 \end{align}
 
 Problem:
 \begin{align}
-& x \in A_1 \setminus A_2
+& A \subseteq B \cup C
 \\
-& x \in A_1 \cap A_2 ^C
+& A \subseteq B \wedge A \subseteq C
 \\
-& x \in A_2 ^C
+& A \subseteq C
 \end{align}
 
 Problem:
 \begin{align}
-& A_1 \subseteq A_2 \cup A_3
+& x \in A \triangle B
 \\
-& A_1 \subseteq A_3 \wedge A_1 \subseteq A_2
+& x \in A \setminus B \vee x \in B \setminus A
 \\
-& A_3 \supseteq A_1
+& x \notin A \cap B
 \end{align}
 
 Problem:
 \begin{align}
-& x \in A_1 \triangle A_2
+& x \in A \setminus ( B \cup C ) \setminus ( D \cup E ) \setminus ( F \cup G )
 \\
-& (x \in A_1 \wedge x \notin A_2 ) \vee (x \in A_2 \wedge x \notin A_1 )
+& x \in A \wedge (x \notin B \cup C \cup D \cup E \cup F \cup G )
+\\
+& x \in A
 \end{align}
 
 Problem:
 \begin{align}
-& x \in A_1 \setminus ( A_2 \cup A_3 ) \setminus ( A_4 \cup A_5 ) \setminus ( A_6 \cup A_7 )
+& x \in A \setminus ( B \setminus C )
 \\
-& x \in A_1 \wedge (x \notin A_2 \cup A_4 \cup A_6 ) \wedge (x \notin A_3 \cup A_5 \cup A_7 )
+& x \in A \wedge \neg (x \in B \wedge x \notin C )
 \\
-& x \in A_1
+& x \in A \wedge (x \notin B \vee x \in C )
+\\
+& x \in A \cap ( C \setminus B )
 \end{align}
 
 Problem:
 \begin{align}
-& x \in A_1 \setminus ( A_2 \setminus A_3 )
+& x \in A \setminus ( B \setminus ( C \setminus D ))
 \\
-& x \in A_1 \wedge \neg (x \in A_2 \wedge x \notin A_3 )
+& x \in A \wedge \neg(x \in B \wedge\neg(x \in C \wedge x \notin D ))
 \\
-& x \in A_1 \wedge (x \notin A_2 \vee x \in A_3 )
+& x \in A \wedge (x \notin B \vee (x \in C \wedge x \notin D ))
 \\
-& x \in A_1 \cap ( A_3 \setminus A_2 )
+& x \in B \rightarrow (x \in C \wedge x \notin D )
 \end{align}
 
 Problem:
 \begin{align}
-& x \in A_1 \setminus ( A_2 \setminus ( A_3 \setminus A_4 ))
+& A \subset B
 \\
-& x \in A_1 \wedge \neg(x \in A_2 \wedge\neg(x \in A_3 \wedge x \notin A_4 ))
-\\
-& x \in A_1 \wedge (x \notin A_2 \vee (x \in A_3 \wedge x \notin A_4 ))
-\\
-& x \in A_2 \rightarrow (x \in A_3 \wedge x \notin A_4 )
+& A \neq B
 \end{align}
 
 Problem:
 \begin{align}
-& A_3 \supseteq A_2 \supseteq A_1
+& A \subset B
 \\
-& A_3 \supseteq A_2
+& \exists x. x \notin A \wedge x \in B
+\\
+& | B \setminus A | > 0
 \end{align}
 
 Problem:
 \begin{align}
-& A_1 \subset A_2
+& x \in ( A \cup B ) \triangle ( C \setminus D )
 \\
-& A_1 \neq A_2
+& x \in (( A \cup B ) \setminus ( C \setminus D )) \cup (( C \setminus D ) \setminus ( A \cup B ))
+\\
+& (x \in ( A \cup B ) \wedge (x \notin C \vee x \in D )) \vee (x \in C \wedge x \notin A \cup B \cup D )
+\\
+& x \in C \rightarrow x \in D \vee x \notin A \cup B \cup D
 \end{align}
 
 Problem:
 \begin{align}
-& A_1 \subset A_2
+& x \notin A \wedge x \in A \cup B
 \\
-& \exists x. x \notin A_1 \wedge x \in A_2
+& x \notin A \wedge (x \in A \vee x \in B )
 \\
-& A_2 \setminus A_1 \neq \emptyset
+& x \in B
 \end{align}
 
 Problem:
 \begin{align}
-& (( A_1 \cup A_2 ) \cup ( A_3 \cup A_4 \cup A_5 )) \cup A_6
+& A \subseteq B \wedge A \subseteq C \wedge A \subseteq D
 \\
-& ( A_5 \cup A_6 \cup A_3 ) \cup A_1 \cup ( A_4 \cup A_2 )
+& A \subseteq B \cap C \cap D
+\end{align}
+
+Problem:
+\begin{align}
+& A \subseteq B \wedge C \subseteq B \wedge D \subseteq B
+\\
+& A \cap C \cap D \subseteq B
+\end{align}
+
+Problem:
+\begin{align}
+& A \subseteq B \subseteq C
+\\
+& A \cup X \subseteq B \cup X \subseteq C \cup X
+\\
+& A \cup X \subseteq C \cup X
 \end{align}
 
 \end{document}
