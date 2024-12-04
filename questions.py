@@ -12,7 +12,7 @@ from copy import deepcopy
 # Each list contains sets of possible first, second, etc. steps
 templates = [
     [
-        ["x \\in ?a \\cup ?b"],
+        ["x \\in ?a \\cap ?b"],
         ["x \\in ?a \\wedge x \\in ?b"],
         ["x \\in ?a", "x \\in ?b"]
     ],
@@ -25,7 +25,7 @@ templates = [
         ["x \\in ?a", "x \\notin ?b", "x \\in ?b ^C"]
     ],
     [
-        ["?a \\subseteq ?b \\cup ?c"],
+        ["?a \\subseteq ?b \\cap ?c"],
         ["?a \\subseteq ?b \\wedge ?a \\subseteq ?c"],
         ["?a \\subseteq ?b", "?a \\subseteq ?c"]
     ],
@@ -53,7 +53,6 @@ templates = [
         ["x \\in ?a \\setminus ( ?b \\setminus ?c )"],
         ["x \\in ?a \\wedge \\neg (x \\in ?b \\wedge x \\notin ?c )"],
         ["x \\in ?a \\wedge (x \\notin ?b \\vee x \\in ?c )"],
-        ["x \\in ?a \\cap ( ?c \\setminus ?b )"]
     ],
     [
         ["x \\in ?a \\setminus ( ?b \\setminus ( ?c \\setminus ?d ))"],
